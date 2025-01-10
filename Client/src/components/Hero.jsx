@@ -14,72 +14,75 @@ const Hero = () => {
       location: locationRef.current.value,
     });
     setIsSearched(true);
-    console.log(
-      "values",
-      titleRef.current.value,
-      locationRef.current.value,
-      setIsSearched
-    );
   };
 
   return (
-    <div className="container 2xl:px-20 mx-auto my-10">
-      <div className="bg-gradient-to-r from-purple-800 to-purple-950 py-16 text-center text-white mx-2 rounded-lg">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+    <div className="container mx-auto px-4 md:px-8 lg:px-16 2xl:px-20 my-10">
+      <div className="bg-gradient-to-r from-purple-800 to-purple-950 py-12 md:py-16 text-center text-white rounded-lg">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold px-4">
           Over 1000 Jobs Available
         </h2>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 mx-auto max-w-xl font-light px-5 mt-4">
-          Your Next Big Career Mover Starts Right Here - Explore the Best Jobs
-          in your domain and apply now to get hired.
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 mx-auto max-w-xl font-light px-6 mt-4">
+          Your Next Big Career Move Starts Right Here - Explore the Best Jobs in
+          your domain and apply now to get hired.
         </p>
 
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 items-center justify-between bg-white w-full sm:w-[50%] mx-auto p-4 rounded-lg ">
-          <div className="flex items-center w-full sm:w-auto">
-            <img src={assets.search_icon} alt="" />
+        <div className="flex flex-col md:flex-row gap-4 max-w-3xl mx-auto px-4">
+          <div className="flex-1 bg-white rounded-lg p-2 flex items-center gap-2">
+            <img src={assets.search_icon} alt="Search" className="w-6 h-6" />
             <input
               type="text"
               placeholder="Search Jobs"
-              className="w-full sm:text-xs p-2 rounded outline-none text-black"
+              className="w-full p-2 outline-none text-black text-sm"
               ref={titleRef}
             />
           </div>
-          <p className="text-3xl text-gray-300 font-semibold sm:hidden">|</p>
-          <div className="flex items-center w-full sm:w-auto">
-            <img src={assets.location_icon} alt="" />
+
+          <div className="flex-1 bg-white rounded-lg p-2 flex items-center gap-2">
+            <img
+              src={assets.location_icon}
+              alt="Location"
+              className="w-6 h-6"
+            />
             <input
               type="text"
               placeholder="Location"
-              className="w-full sm:text-xs p-2 rounded outline-none text-black"
+              className="w-full p-2 outline-none text-black text-sm"
               ref={locationRef}
             />
           </div>
 
           <button
             onClick={onClickHandler}
-            className="bg-blue-500 text-white py-2 px-6 rounded mt-4 sm:mt-0 sm:w-auto"
+            className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-8 rounded-lg transition-colors duration-200 md:w-auto w-full"
           >
             Search
           </button>
         </div>
       </div>
-
-      <div className="mt-5 mx-2 shadow-md p-6 border border-gray-300 rounded-lg">
-        <div className="flex flex-wrap sm:flex-row items-center justify-between mt-5">
-          <p className="text-l font-semibold text-gray-600">Trusted By</p>
-          <img className="mt-4 sm:mt-0 h-6 " src={assets.walmart_logo} alt="" />
-          <img
-            className="mt-4 sm:mt-0 h-6"
-            src={assets.microsoft_logo}
-            alt=""
-          />
-          <img className="mt-4 sm:mt-0 h-6" src={assets.amazon_logo} alt="" />
-          <img
-            className="mt-4 sm:mt-0 h-6"
-            src={assets.accenture_logo}
-            alt=""
-          />
-          <img className="mt-4 sm:mt-0 h-6" src={assets.adobe_logo} alt="" />
-          <img className="mt-4 sm:mt-0 h-6" src={assets.samsung_logo} alt="" />
+      <p className="text-lg font-semibold text-gray-600 mb-6  text-center mt-6">
+        Trusted By
+      </p>
+      <div className="mt-8 shadow-md p-6 border border-gray-300 rounded-lg">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
+          {[
+            "walmart_logo",
+            "microsoft_logo",
+            "amazon_logo",
+            "accenture_logo",
+            "adobe_logo",
+            "samsung_logo",
+          ].map((logo) => (
+            <img
+              key={logo}
+              src={assets[logo]}
+              alt={
+                logo.replace("_logo", "").charAt(0).toUpperCase() +
+                logo.slice(1).replace("_logo", "")
+              }
+              className="h-6 w-auto"
+            />
+          ))}
         </div>
       </div>
     </div>

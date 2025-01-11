@@ -21,7 +21,7 @@ const JobCard = ({ job }) => {
         ></p>
         <div className="flex items-center justify-between mt-4">
           <button className="bg-blue-600  px-1 py-1 rounded text-white w-[100px]">
-            Apply
+            Apply.
           </button>
           <button>Learn More</button>
         </div>

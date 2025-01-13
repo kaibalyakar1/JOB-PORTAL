@@ -23,7 +23,7 @@ const JobCard = ({ job }) => {
           <button className="bg-blue-600  px-1 py-1 rounded text-white w-[100px]">
             Apply
           </button>
-          <button>Learn More</button>
+          <button>Learn Moree</button>
         </div>
       </div>
     </div>

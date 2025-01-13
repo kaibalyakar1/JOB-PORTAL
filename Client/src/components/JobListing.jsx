@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
-import {
-  assets,
-  JobCategories,
-  JobLocations,
-  jobsData,
-} from "../assets/assets";
+import { assets, JobCategories, JobLocations } from "../assets/assets";
 import JobCard from "./JobCard";
 
 const JobListing = () => {
-  const { isSearched, searchFilter, setSearchFilter, setIsSearched } =
+  const { isSearched, searchFilter, setSearchFilter, jobs } =
     useContext(AppContext);
+  const [showFilter, setShowFilter] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 6;
 
   const handleClearSearch = () => {
     setSearchFilter((prev) => ({
@@ -26,12 +24,34 @@ const JobListing = () => {
     }));
   };
 
+  const totalPages = Math.ceil(jobs.length / jobsPerPage);
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    document.getElementById("job-list")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
   if (!searchFilter) {
     return null;
   }
 
   return (
-    <div className="container mx-auto px-4 lg:px-10">
+    <div className="container mx-auto px-4 lg:w-[75.8%]">
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar with Checkboxes */}
         <div className="w-full lg:w-1/4">
@@ -76,8 +96,15 @@ const JobListing = () => {
               </>
             )}
 
+            <button
+              onClick={() => setShowFilter((prev) => !prev)}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-white hover:text-black border border-blue-600 transition-colors w-[30%] mb-4"
+            >
+              {showFilter ? "Close" : "Filter"}
+            </button>
+
             {/* Categories Section */}
-            <div className="mb-8">
+            <div className={showFilter ? "" : "max-lg:hidden"}>
               <h4 className="font-semibold mb-3">Search By Categories</h4>
               <input
                 type="text"
@@ -95,7 +122,7 @@ const JobListing = () => {
             </div>
 
             {/* Locations Section */}
-            <div>
+            <div className={showFilter ? "" : "max-lg:hidden"}>
               <h4 className="font-semibold mb-3">Search by location</h4>
               <input
                 type="text"
@@ -124,14 +151,56 @@ const JobListing = () => {
               Get Your desired jobs from top companies
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Job cards will go here */}
-              {jobsData.map((job, index) => (
+              {currentJobs.map((job, index) => (
                 <JobCard key={index} job={job} />
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Pagination */}
+      {jobs.length > 0 && (
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="disabled:opacity-50"
+          >
+            <img
+              className="w-3 items-center mb-3 font-bold cursor-pointer"
+              src={assets.left_arrow_icon}
+              alt="Previous page"
+            />
+          </button>
+
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`h-5 w-5 flex items-center justify-center px-2 py-1 text-sm mb-3 ${
+                currentPage === index + 1
+                  ? "bg-blue-800 text-white"
+                  : "bg-white text-blue-800"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="disabled:opacity-50"
+          >
+            <img
+              className="w-3 items-center mb-3 font-bold cursor-pointer"
+              src={assets.right_arrow_icon}
+              alt="Next page"
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

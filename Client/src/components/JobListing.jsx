@@ -74,7 +74,7 @@ const JobListing = () => {
             {/* Current Search Section */}
             {isSearched && (searchFilter?.search || searchFilter?.location) && (
               <>
-                <h3 className="text-lg font-semibold mb-4">Current Search</h3>
+                <h3 className="text-lg font-semibold mb-4">Current Search.</h3>
                 <div className="mb-4 text-gray-600 flex flex-wrap gap-3">
                   {searchFilter.search && (
                     <span className="inline-flex items-center gap-2 bg-blue-100 px-3 py-1 rounded text-sm">

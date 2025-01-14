@@ -45,11 +45,26 @@ const JobListing = () => {
       handlePageChange(currentPage + 1);
     }
   };
-
+  const [selectedCategory, setSelectedCategory] = useState([]);
   if (!searchFilter) {
     return null;
   }
+  const handleCategory = (category) => {
+    setSelectedCategory((prev) =>
+      prev.includes(category)
+        ? prev.filter((item) => item !== category)
+        : [...prev, category]
+    );
+  };
 
+  const [selectedLocation, setSelectedLocation] = useState([]);
+  const handleLocations = (location) => {
+    setSelectedLocation((prev) =>
+      prev.includes(location)
+        ? prev.filter((item) => item !== location)
+        : [...prev, location]
+    );
+  };
   return (
     <div className="container mx-auto px-4 lg:w-[75.8%]">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -114,7 +129,12 @@ const JobListing = () => {
               <ul className="space-y-2">
                 {JobCategories.map((category, index) => (
                   <li key={index} className="flex items-center gap-2">
-                    <input type="checkbox" name={category} id={category} />
+                    <input
+                      type="checkbox"
+                      onChange={handleCategory}
+                      name={category}
+                      id={category}
+                    />
                     <label htmlFor={category}>{category}</label>
                   </li>
                 ))}
@@ -132,7 +152,12 @@ const JobListing = () => {
               <ul className="space-y-2">
                 {JobLocations.map((location, index) => (
                   <li key={index} className="flex items-center gap-2">
-                    <input type="checkbox" name={location} id={location} />
+                    <input
+                      type="checkbox"
+                      onChange={handleLocations}
+                      name={location}
+                      id={location}
+                    />
                     <label htmlFor={location}>{location}</label>
                   </li>
                 ))}

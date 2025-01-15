@@ -58,7 +58,7 @@ const Applications = () => {
               <th className="py-3 px-4 border-b text-left">Logo</th>
               <th className="py-3 px-4 border-b text-left">Company</th>
               <th className="py-3 px-4 border-b text-left">Job Title</th>
-              <th className="py-3 px-4 border-b text-left">Location</th>
+              <th className="py-3 px-4 border-b text-left">Locations</th>
               <th className="py-3 px-4 border-b text-left">Date</th>
               <th className="py-3 px-4 border-b text-left">Status</th>
             </tr>

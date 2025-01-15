@@ -8,8 +8,8 @@ const Navbar = () => {
   const { user } = useUser();
 
   return (
-    <nav className="shadow-md py-3 px-4 sm:px-6 md:px-8 lg:px-10">
-      <div className="max-w-7xl mx-auto">
+    <nav className="py-3 px-4 sm:px-6 md:px-8 lg:px-10 w-full">
+      <div className="max-w-8xl mx-auto">
         <div className="flex items-center justify-between flex-wrap gap-4">
           {/* Logo Section */}
           <Link to="/" className="flex-shrink-0">

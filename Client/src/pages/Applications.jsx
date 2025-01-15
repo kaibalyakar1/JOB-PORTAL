@@ -6,7 +6,7 @@ const Applications = () => {
     <div>
       <Navbar />
       <div>
-        <h2>Your Resume</h2>
+        <h2>Your Resume.</h2>
       </div>
     </div>
   );

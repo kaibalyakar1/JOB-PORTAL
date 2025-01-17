@@ -36,7 +36,7 @@ const Dashboard = () => {
               to={"/dashboard/add-job"}
             >
               <img src={assets.add_icon} alt="" />
-              <p>Add Jobs</p>
+              <p>Add Job</p>
             </NavLink>
 
             <NavLink

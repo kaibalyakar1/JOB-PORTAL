@@ -8,6 +8,9 @@ import RecruiterLogin from "./components/RecruiterLogin";
 import Dashboard from "./pages/Dashboard";
 import ViewJobs from "./pages/ViewJobs";
 import AddJob from "./pages/AddJob";
+import ManageJobs from "./pages/ManageJobs";
+import ViewApplications from "./pages/ViewApplications";
+import "quill/dist/quill.snow.css";
 
 const App = () => {
   const { recruiterLogin } = useContext(AppContext);
@@ -22,8 +25,11 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="view-jobs" element={<ViewJobs />} />
           <Route path="add-job" element={<AddJob />} />
+          <Route path="manage-jobs" element={<ManageJobs />} />
+          <Route path="view-applications" element={<ViewApplications />} />
         </Route>
       </Routes>
+      `
     </>
   );
 };

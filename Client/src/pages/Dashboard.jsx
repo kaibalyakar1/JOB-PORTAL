@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { assets } from "../assets/assets";
+import AddJob from "./AddJob";
 
 const Dashboard = () => {
   return (
@@ -30,29 +31,38 @@ const Dashboard = () => {
         <div className="inline-block min-h-screen border-r-2">
           <ul>
             <NavLink
-              className={({ isActive }) =>
-                (isActive ? "bg-blue-200" : "") + "flex items-center gap-2 p-4"
-              }
               to={"/dashboard/add-job"}
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-3 sm:px-6 hover:bg-gray-100  ${
+                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                } `
+              }
             >
-              <img src={assets.add_icon} alt="" />
-              <p>Add Job</p>
+              <img className="min-w-4" src={assets.add_icon} alt="" />
+              <p className="max-sm:hidden">Add Job</p>
             </NavLink>
-
             <NavLink
-              className={"flex items-center gap-2 p-4"}
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-3 sm:px-6 hover:bg-gray-100  ${
+                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                } `
+              }
               to={"/dashboard/manage-jobs"}
             >
-              <img src={assets.home_icon} alt="" />
-              <p>Manage Jobs</p>
+              <img lassName="min-w-4" src={assets.home_icon} alt="" />
+              <p className="max-sm:hidden">Manage Jobs</p>
             </NavLink>
 
             <NavLink
-              className={"flex items-center gap-2 p-4"}
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-3 sm:px-6 hover:bg-gray-100  ${
+                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                } `
+              }
               to={"/dashboard/view-applications"}
             >
-              <img src={assets.person_tick_icon} alt="" />
-              <p>View Applications</p>
+              <img lassName="min-w-4" src={assets.person_tick_icon} alt="" />
+              <p className="max-sm:hidden">View Applications</p>
             </NavLink>
           </ul>
         </div>

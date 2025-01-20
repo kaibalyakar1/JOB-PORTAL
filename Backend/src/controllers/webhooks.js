@@ -6,7 +6,7 @@ import User from "../models/user.model.js";
 
 export const clerWebHook = async (req, res) => {
   try {
-    const whook = new Webhook(process.env.WEBHOOK_SECRET);
+    const whook = new Webhook(process.env.CLER_WEBHOOK_SECRET);
     await whook.verify(JSON.stringify(req.body), {
       svix_id: req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],
